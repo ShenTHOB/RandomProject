@@ -18,11 +18,11 @@ export default function CodeHandler() {
       return;
     }
     try {
-      const res = await axios.post(`${BACKEND_URL}/send-code`, { email });
+      const res = await axios.post(`${BACKEND_URL}/api/email/send-code`, { email });
       setMessage(res.data.message || "✅ Code sent to your email.");
       setStep(2);
     } catch (err) {
-      setMessage("❌ Failed to send code. Try again.");
+      setMessage("Failed to send code. Try again.");
     }
   };
   
@@ -32,14 +32,14 @@ export default function CodeHandler() {
       return;
     }
     try {
-      const res = await axios.post(`${BACKEND_URL}/verify-code`, { email, code });
-      setMessage(res.data.success ? "✅ Verification approved!" : "❌ Wrong code, try again.");
+      const res = await axios.post(`${BACKEND_URL}/api/email/verify-code`, { email, code });
+      setMessage(res.data.success ? "Verification approved!" : " Wrong code, try again.");
     } catch (err) {
-      setMessage("❌ Error verifying code.");
+      setMessage("Error verifying code.");
     }
   };
   
-  const isSuccess = message.startsWith("✅");
+  const isSuccess = message.startsWith("Verification approved!");
 
   return (
     <section className={styles.wrapper}>

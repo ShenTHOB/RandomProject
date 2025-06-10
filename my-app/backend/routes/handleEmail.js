@@ -1,6 +1,7 @@
-// handleEmail.js
+
 const nodemailer = require("nodemailer");
 
+// class for tempporary store which maps each user and their temporary code.
 class CodeStore {
     constructor() {
       this.store = new Map();
@@ -28,21 +29,30 @@ const codeStore = new CodeStore();
 };
   
 
-  
+/**
+ * function generates a 6 digit code , then sends the email and saves the code in temporary storage in order to verify in the future.
+ * @param {*} email 
+ * @returns 
+ */
 async function sendCode(email) {
     if (!email || typeof email !== "string") {
       throw new Error("Invalid email.");
     }
-  
+    
+    // generate and store code.
     const code = generateCode();
-    codeStore.saveCode(email, code);
-  
+    codeStore.saveCode(email, code);  
+
+    // setup sender and reciever
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "put sender email",
-        pass: "put generated code",
+        user: "put sender gmail here",
+        pass: "put generated password from gmail app",
       },
+       tls: {
+    rejectUnauthorized: false, // <== allows self-signed certs
+  },
     });
   
     const mailOptions = {
@@ -51,12 +61,19 @@ async function sendCode(email) {
       subject: "Your Verification Code",
       text: `Your verification code is: ${code}`,
     };
-  
+    
+    // sends email
     await transporter.sendMail(mailOptions);
   
-    return { message: "✅ Code sent to email." };
+    return { message: "Code sent to email." };
 }
-  
+
+/**
+ * Function will verify code, retrieve from temporary storage, then clear code after verification.
+ * @param {*} email 
+ * @param {*} code 
+ * @returns 
+ */
 function verifyCode(email, code) {
     if (!email || !code) {
       return { success: false, message: "Missing email or code" };
