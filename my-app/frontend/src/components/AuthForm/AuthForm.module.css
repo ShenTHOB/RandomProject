@@ -1,0 +1,99 @@
+.authContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(to right, #667eea, #764ba2);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.formWrapper {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.modeTabs {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+
+
+
+.inputField {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.25rem;
+}
+
+.inputLabel {
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+  color: #e0e0e0;
+}
+
+.input {
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  transition: border-color 0.3s, background 0.3s;
+}
+
+.input:focus {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.submitButton {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+
+.messageSuccess {
+  margin-top: 1rem;
+  color: #c6f6d5;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.messageError {
+  margin-top: 1rem;
+  color: #fed7d7;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.formContent {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
